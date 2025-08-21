@@ -39,4 +39,4 @@ def predictions():
     outputs=session["result"]
     return render_template('predictions.html',l=outputs)
 
-app.run(debug=True)
+app.run(host="0.0.0.0", port=5000,debug=True)
