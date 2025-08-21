@@ -1,0 +1,1 @@
+timestamp,fuel_type,max_capacity_mw,current_generation_mw,run_hours,temp_C,humidity_%,pressure_hPa,predicted_efficiency,recommended_generation_mw,adjustment_pct,fuel_per_kwh,fuel_unit,heat_rate_kcal_per_kwh,fuel_used_current,fuel_used_recommended,fuel_saved,fuel_cost_per_unit,cost_saved,co2_saved_tonnes

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title >Make your UI</title> 
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      overflow:hidden;
+    }
+    
+  </style>
+</head>
+<body onload="get()">
+
+
+<!--safe zone-->
+
+<img src="static/color1.jpg" style="  position: absolute;  left:0%;  top:0%;  width:100.0%;  height:100%; ">
+
+
+
+
+<div  style="  position: absolute;  left:37.76%;  top:6.16%;  width:29.14%;  height:10%; background:linear-gradient(135deg, #7eb8ff7d, #0624447b); border-radius:20px; "></div> 
+
+
+<img src="static/icon.jpg" style=" border-radius:20px;  position: absolute;  left:38.80%;  top:7.7%;  width:3.390%;  aspect-ratio:1; ">
+
+<div  style="  position: absolute;  left:42.71%;  top:8.49%;  width:25.88%;  font-size: 1.756vw;  aspect-ratio:7.543; color:rgb(0, 195, 255)">AI POWER OPTIMIZATION</div> 
+
+
+<div  style="  position: absolute; color:rgb(183, 184, 184); left:43.55%;  top:12.74%;  width:19.73%;  font-size: 0.819vw;  aspect-ratio:16.41; ">Advanced Efficiency Analytics Platform</div> 
+
+
+<div  style="  position: absolute;  left:28.61%;  top:21.23%;  width:49.44%; text-align:center; font-size: 1vw;  aspect-ratio:114.8; color:grey;">Optimize your power generation efficiency with AI-driven insights and real-time recommendations</div> 
+
+
+<div id="hover1_0"  style="  position: absolute;  left:12%;  top:30%; border-radius:20px; width:80.0%;  height:50%; background-color:transparent; border:0.5px solid rgb(50, 233, 187);"></div> 
+
+
+<div  style="  position: absolute;  left:42%;  top:33.01%;  width:20.38%; font-weight:bold; font-size: 1.54vw;  aspect-ratio:11.30; color:rgb(208, 9, 208)">Power Generation Parameters</div> 
+<div  style="  position: absolute;  left:41.3%;  top:37.01%;  width:25.38%;  font-size: 1vw;  aspect-ratio:11.30; color:grey">Configure your system parameters for optimal results</div> 
+
+
+<img src="static/iconfuel.png" style="  position: absolute;  left:15.52%;  top:46.16%;  width:2.280%;  aspect-ratio:1; ">
+
+<div  style="  position: absolute;  left:18.91%;  top:47.71%;  width:6.180%;  font-size: 1vw;  aspect-ratio:3.669; color:white">Fuel Type</div> 
+
+
+<select id="fuel" placeholder="Select fuel type" name="fuel" style=" background-color:transparent; border-radius:10px; position: absolute; color:grey; text-align:center; left:18.91%;  top:52.47%;  width:9.22%;  aspect-ratio:5.495; ">
+  <!--option value="select" selected disabled>Select fuel type</option-->
+  <option value="coal">Coal</option>
+  <option value="oil">Oil</option>
+  <option  value="natural_gas">Natural Gas</option>
+</select>
+<img src="static/iconruntime.png" style="  position: absolute;  left:35.52%;  top:46.16%;  width:2.80%;  aspect-ratio:1.2; ">
+<div  style="  position: absolute;  left:38.91%;  top:47.71%;  width:6.180%;  font-size: 1vw;  aspect-ratio:3.669; color:white">Daily Runtime</div> 
+<input id="runtime" name="runtime" placeholder="Enter hours (0-24)" type="number"; min="0"; max="24"; style=" background-color:transparent; border-radius:10px; position: absolute; color:grey; text-align:center; left:38.91%;  top:52.47%;  width:9.22%;  aspect-ratio:5.495; border: 1px solid grey;">
+<img src="static/iconcapacity.png" style="  position: absolute;  left:55.52%;  top:46.16%;  width:2.60%;  aspect-ratio:1; ">
+<div  style="  position: absolute;  left:58.91%;  top:47.71%;  width:10.180%;  font-size: 1vw;  aspect-ratio:3.669; color:white">Maximum Capacity</div> 
+<input id="cap" name="cap" placeholder="Enter capacity in MW" type="number"; style=" background-color:transparent; border-radius:10px; position: absolute; color:grey; text-align:center; left:58.91%;  top:52.47%;  width:9.22%;  aspect-ratio:5.495; border: 1px solid grey;">
+<img src="static/dashboard.png" style="  position: absolute; border-radius:10px; left:76%;  top:47.16%;  width:2%;  aspect-ratio:1; ">
+<div  style="  position: absolute;  left:78.91%;  top:47.71%;  width:10.180%;  font-size: 1vw;  aspect-ratio:3.669; color:white">Current Fuel Used</div> 
+<input id="cur" name="cur" placeholder="Enter capacity in MW" type="number"; style=" background-color:transparent; border-radius:10px; position: absolute; color:grey; text-align:center; left:78.91%;  top:52.47%;  width:9.22%;  aspect-ratio:5.495; border: 1px solid grey;">
+
+<div  id="hover1_1"  style="  position: absolute;  left:41.63%;  top:65.34%;  width:19.58%;  aspect-ratio:7.583; background:linear-gradient(135deg, #56c3f5d6, #c158e1b9); border-radius:10px; "></div> 
+
+<img  src="static/generate.png" style="  position: absolute;  left:42.71%;  top:66.58%;  width:1.630%;  aspect-ratio:1; border-radius: 10px;"></img> 
+
+
+<div  style="  position: absolute;  left:45.66%;  top:66.44%;  width:16.02%;  font-size: 1.1vw;  aspect-ratio:9.536; color:black">Generate AI Optimization</div> 
+
+
+<!--div id="hover2_1" style="  position: absolute;  left:23.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<div  id="hover2_2" style="  position: absolute;  left:38.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<div  id="hover2_3" style="  position: absolute;  left:53.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<div  id="hover2_4" style="  position: absolute;  left:68.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<img  src="static/dashboard.png" style="  position: absolute;  left:23.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+<img src="static/analytics.png" style="  position: absolute;  left:38.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+<img src="static/predictions.png" style="  position: absolute;  left:53.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+<img  src="static/performance.png" style="  position: absolute;  left:68.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+
+
+
+
+<div  style="  position: absolute;  left:25.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">Dashboard</div> 
+
+<div  style="  position: absolute;  left:26%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">Main control panel</div> 
+<div  style="  position: absolute;  left:40.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">Analytics</div> 
+
+<div  style="  position: absolute;  left:41%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">Visual data insights</div> 
+<div  style="  position: absolute;  left:55.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">AI Predictions</div> 
+
+<div  style="  position: absolute;  left:56%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">7-day forecasts</div> 
+<div  style="  position: absolute;  left:70.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">Performance</div> 
+
+<div  style="  position: absolute;  left:71%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">Key metrics</div--> 
+
+<!--img src="static/color1.jpg" style="  position: absolute;  left:22%;  top:80%;  width:100.0%;  height:10%; "-->
+
+<!--Write here-->
+
+<script>
+
+    /*function hover(id) {
+  document.getElementById(id).style.boxShadow =
+    "0 0 10px 5px rgba(0,123,255,0.6)";
+}
+function hoverOff(id) {
+  document.getElementById(id).style.boxShadow = "none";
+}*/
+const target = document.getElementById("hover1_0");
+const target1 = document.getElementById("hover1_1");
+/*const target21 = document.getElementById("hover2_1");
+const target22 = document.getElementById("hover2_2");
+const target23 = document.getElementById("hover2_3");
+const target24 = document.getElementById("hover2_4");*/
+document.addEventListener("mousemove", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+  const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const percentX = ((x / viewportWidth) * 100)
+      const percentY = ((y / viewportHeight) * 100)
+  f=0
+  if (percentX >= 22 && percentX <= 82 && percentY >= 30 && percentY <= 80) {
+    target.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)"; f=1;
+  } else {
+    target.style.boxShadow = "none";
+  }
+  if (percentX >= 41 && percentX <= 61 && percentY >= 65 && percentY <= 71) {
+    target1.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer";f=1;
+  } else {
+    target1.style.boxShadow = "none";
+  }
+  /*if (percentX >= 23 && percentX <= 36.6 && percentY >= 82 && percentY <= 89) {
+    target21.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer"; f=1;
+  } else {
+    target21.style.boxShadow = "none";
+  }
+  if (percentX >= 38 && percentX <= 51.6 && percentY >= 82 && percentY <= 89) {
+    target22.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer"; f=1;
+  } else {
+    target22.style.boxShadow = "none";
+  }
+  if (percentX >= 53 && percentX <= 66.6 && percentY >= 82 && percentY <= 89) {
+    target23.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer";
+    f=1;
+  } else {
+    target23.style.boxShadow = "none";
+  }
+  if (percentX >= 68 && percentX <= 81.6 && percentY >= 82 && percentY <= 89) {
+    target24.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer"; f=1;
+  } else {
+    target24.style.boxShadow = "none";
+  }
+  if (f===0) document.body.style.cursor = "default";*/
+});
+document.addEventListener("click", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+  const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const percentX = ((x / viewportWidth) * 100).toFixed(2);
+      const percentY = ((y / viewportHeight) * 100).toFixed(2);
+  if (percentX >= 41 && percentX <= 61 && percentY >= 65 && percentY <= 71) {
+    let val = document.getElementById("cap").value;
+  localStorage.setItem("cap", val);
+  let val1 = document.getElementById("runtime").value;
+  localStorage.setItem("runtime", val1);
+  let val2 = document.getElementById("fuel").value;
+  localStorage.setItem("fuel", val2);
+  let val3 = document.getElementById("cur").value;
+  localStorage.setItem("cur", val3);
+  if (val&&val1&&val2&&val3) window.location.href = `/performance?cap=${val}&runtime=${val1}&fuel=${val2}&cur=${val3}`;
+  }
+});
+/*const target1 = document.getElementById("hover1_1");
+
+document.addEventListener("mousemove", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+  const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const percentX = ((x / viewportWidth) * 100).toFixed(2);
+      const percentY = ((y / viewportHeight) * 100).toFixed(2);
+  if (percentX >= 41 && percentX <= 61 && percentY >= 65 && percentY <= 71) {
+    target1.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer";
+  } else {
+    target1.style.boxShadow = "none";
+    document.body.style.cursor = "default";
+  }
+});*/
+
+function get(){
+  if (localStorage.getItem("runtime"))
+  document.getElementById("runtime").value   =  localStorage.getItem("runtime");
+  if (localStorage.getItem("fuel"))
+  document.getElementById("fuel").value = localStorage.getItem("fuel");
+  if (localStorage.getItem("cap"))
+  document.getElementById("cap").value  = localStorage.getItem("cap");
+if (localStorage.getItem("cur"))
+  document.getElementById("cur").value  = localStorage.getItem("cur");
+}
+
+  </script>
+</body>
+</html>

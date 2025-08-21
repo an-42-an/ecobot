@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title >Make your UI</title> 
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      overflow:hidden;
+    }
+    .hover1 {
+    transition: box-shadow 0.5s ease;
+  }
+  td,th{
+        width:fit-content;
+        height:fit-content;
+        border: none;
+        padding: 0.5vh;
+        text-align: center;
+        font-size:0.85vw
+    }
+    th{padding:1vh}
+      </style>
+</head>
+<body >
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!--div id="chartWrap"
+     style="position:absolute; background-color: white; left:16vw; top:28vh; width:30vw; height:50vh; z-index:5;">
+  <canvas id="myChart"></canvas>
+</div-->
+
+<img src="static/color1.jpg" style="  position: absolute;  left:0%;  top:0%;  width:100.0%;  height:100%; ">
+
+<div id="hover2_1" style="  position: absolute;  left:23.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<div  id="hover2_2" style="  position: absolute;  left:38.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<div  id="hover2_3" style="  position: absolute;  left:53.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<div  id="hover2_4" style="  position: absolute;  left:68.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<img  src="static/dashboard.png" style="  position: absolute;  left:23.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+<img src="static/analytics.png" style="  position: absolute;  left:38.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+<img src="static/predictions.png" style="  position: absolute;  left:53.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+<img  src="static/performance.png" style="  position: absolute;  left:68.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+
+
+
+
+<div  style="  position: absolute;  left:25.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">Dashboard</div> 
+
+<div  style="  position: absolute;  left:26%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">Main control panel</div> 
+<div  style="  position: absolute;  left:40.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">Analytics</div> 
+
+<div  style="  position: absolute;  left:41%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">Visual data insights</div> 
+<div  style="  position: absolute;  left:55.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">AI Predictions</div> 
+
+<div  style="  position: absolute;  left:56%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">7-day forecasts</div> 
+<div  style="  position: absolute;  left:70.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">Performance</div> 
+
+<div  style="  position: absolute;  left:71%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">Key metrics</div> 
+
+
+<img src="static/predictions1.png" style="  position: absolute;  left:36.07%;  top:8.10%;  width:3.380%;  aspect-ratio:1; ">
+<!--font-weight:bold;-->
+<div  style="  position: absolute;  left:40.82%;  top:9.37%;  width:30.86%;  font-size: 2vw;  aspect-ratio:10.69; color:rgb(30, 215, 248)">7-Day AI Prediction Table</div> 
+
+
+<div  style="  position: absolute;  left:30.04%;  top:15.77%;  width:44.32%;  font-size: 1vw;  aspect-ratio:16.35; color:grey">Detailed daily forecasts and optimization metrics for the next 7 days of power generation optimization</div> 
+
+
+<div  style="  position: absolute;  left:47.05%;  top:19.88%;  width:5.940%;  height:1%; background:linear-gradient(135deg, #7ee5ff, #6a11cb); border-radius:20px; "></div> 
+<div id="hover1_0" class="hover1" style=" background-color: transparent; overflow-y: auto; position: absolute;  left:20%;  top:25%; border-radius:20px; width:64.0%;  height:55%; border:0.5px solid rgb(50, 233, 187);">
+<table style="border:none; border-collapse:collapse; color:white; padding: 2px; ">
+    <tr>
+        <th>Day</th>
+        <th>Date</th>
+        <th>Recommended Generation (MW)</th>
+        <th>Recommended Fuel Use (gal)</th>
+        <th>Efficiency (%)</th>
+        <th>Fuel Saved (gal)</th>
+        <th>Cost Reduction (Rs)</th>
+        <th>CO2 Reduction (tonnes)</th>
+    </tr>
+    <tr>
+        <td><img src="static/one.png"></td>
+        <td>{{l[0][0]}}</td>
+        <td>{{l[0][1]}}</td>
+        <td>{{l[0][2]}}</td>
+        <td>{{l[0][6]*100}}</td>
+        <td>{{l[0][3]}}</td>
+        <td>{{l[0][4]}}</td>
+        <td>{{l[0][5]}}</td>
+    </tr>
+    <tr>
+        <td><img src="static/two.png"></td>
+        <td>{{l[1][0]}}</td>
+        <td>{{l[1][1]}}</td>
+        <td>{{l[1][2]}}</td>
+        <td>{{l[1][6]*100}}</td>
+        <td>{{l[1][3]}}</td>
+        <td>{{l[1][4]}}</td>
+        <td>{{l[1][5]}}</td>
+    </tr>
+    <tr>
+        <td><img src="static/three.png"></td>
+        <td>{{l[2][0]}}</td>
+        <td>{{l[2][1]}}</td>
+        <td>{{l[2][2]}}</td>
+        <td>{{l[2][6]*100}}</td>
+        <td>{{l[2][3]}}</td>
+        <td>{{l[2][4]}}</td>
+        <td>{{l[2][5]}}</td>
+    </tr>
+    <tr>
+        <td><img src="static/four.png"></td>
+        <td>{{l[3][0]}}</td>
+        <td>{{l[3][1]}}</td>
+        <td>{{l[3][2]}}</td>
+        <td>{{l[3][6]*100}}</td>
+        <td>{{l[3][3]}}</td>
+        <td>{{l[3][4]}}</td>
+        <td>{{l[3][5]}}</td>
+    </tr>
+    <tr>
+        <td><img src="static/five.png"></td>
+        <td>{{l[4][0]}}</td>
+        <td>{{l[4][1]}}</td>
+        <td>{{l[4][2]}}</td>
+        <td>{{l[4][6]*100}}</td>
+        <td>{{l[4][3]}}</td>
+        <td>{{l[4][4]}}</td>
+        <td>{{l[4][5]}}</td>
+    </tr>
+    <tr>
+        <td><img src="static/six.png"></td>
+        <td>{{l[5][0]}}</td>
+        <td>{{l[5][1]}}</td>
+        <td>{{l[5][2]}}</td>
+        <td>{{l[5][6]*100}}</td>
+        <td>{{l[5][3]}}</td>
+        <td>{{l[5][4]}}</td>
+        <td>{{l[5][5]}}</td>
+    </tr>
+    <tr>
+        <td><img src="static/seven.png"></td>
+        <td>{{l[6][0]}}</td>
+        <td>{{l[6][1]}}</td>
+        <td>{{l[6][2]}}</td>
+        <td>{{l[6][6]*100}}</td>
+        <td>{{l[6][3]}}</td>
+        <td>{{l[6][4]}}</td>
+        <td>{{l[6][5]}}</td>
+    </tr>
+
+</table>
+<!--l.append([day['date'],outputs['recommended_generation_mw'],outputs['fuel_used_recommended'],\
+                outputs['fuel_saved'],outputs['cost_saved'],outputs['co2_saved_tonnes'],\
+                    outputs['recommended_efficiency']])-->
+
+
+
+
+
+
+</div> 
+
+<!--img  src="static/calendar.png" style="  position: absolute;  left:27.83%;  top:30.70%;  width:2.5%;  aspect-ratio:1; border-radius:20px; "-->
+
+<script >
+    const target10 = document.getElementById("hover1_0");
+
+const target21 = document.getElementById("hover2_1");
+const target22 = document.getElementById("hover2_2");
+const target23 = document.getElementById("hover2_3");
+const target24 = document.getElementById("hover2_4");
+document.addEventListener("mousemove", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+  const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const percentX = ((x / viewportWidth) * 100)
+      const percentY = ((y / viewportHeight) * 100)
+  f=0
+
+  if (percentX >= 27 && percentX <= 77 && percentY >= 28 && percentY <= 78) {
+    target10.style.boxShadow = "0 0 10px 10px rgba(0,123,255,0.6)"; f=1;
+    //document.body.style.cursor = "pointer";f=1;
+  } else {
+    target10.style.boxShadow = "none";
+  }
+  if (percentX >= 23 && percentX <= 36.6 && percentY >= 82 && percentY <= 89) {
+    target21.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer"; f=1;
+  } else {
+    target21.style.boxShadow = "none";
+  }
+  if (percentX >= 38 && percentX <= 51.6 && percentY >= 82 && percentY <= 89) {
+    target22.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer"; f=1;
+  } else {
+    target22.style.boxShadow = "none";
+  }
+  if (percentX >= 53 && percentX <= 66.6 && percentY >= 82 && percentY <= 89) {
+    target23.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer";
+    f=1;
+  } else {
+    target23.style.boxShadow = "none";
+  }
+  if (percentX >= 68 && percentX <= 81.6 && percentY >= 82 && percentY <= 89) {
+    target24.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer"; f=1;
+  } else {
+    target24.style.boxShadow = "none";
+  }
+  if (f===0) document.body.style.cursor = "default";
+});
+
+
+    document.addEventListener("click",e=>{
+  const x = e.clientX;
+  const y = e.clientY;
+  const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const percentX = ((x / viewportWidth) * 100)
+      const percentY = ((y / viewportHeight) * 100)
+  if (percentX >= 23 && percentX <= 36.6 && percentY >= 82 && percentY <= 89) {
+    console.log(1)
+  window.location.href = '/';
+  }
+  if (percentX >= 38 && percentX <= 51.6 && percentY >= 82 && percentY <= 89) {
+    const params = new URLSearchParams(window.location.search);
+window.location.href = "/analytics?" + params.toString();
+  //window.location.href = `/analytics?cap=${val}&runtime=${val1}&fuel=${val2}`;
+
+  }
+  if (percentX >= 53 && percentX <= 66.6 && percentY >= 82 && percentY <= 89) {
+const params = new URLSearchParams(window.location.search);
+window.location.href = "/predictions?" + params.toString();
+  } 
+  if (percentX >= 68 && percentX <= 81.6 && percentY >= 82 && percentY <= 89) {
+const params = new URLSearchParams(window.location.search);
+window.location.href = "/performance?" + params.toString();
+  } 
+});
+
+const l1 = JSON.parse(`{{ l|tojson }}`);  // Flask list into JS safely
+
+  </script>
+</body>
+</html>

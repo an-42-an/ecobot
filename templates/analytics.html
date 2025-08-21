@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title >Make your UI</title> 
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      overflow:hidden;
+    }
+    .hover1 {
+    transition: box-shadow 0.5s ease;
+  }
+      </style>
+</head>
+<body >
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!--div id="chartWrap"
+     style="position:absolute; background-color: white; left:16vw; top:28vh; width:30vw; height:50vh; z-index:5;">
+  <canvas id="myChart"></canvas>
+</div-->
+
+<img src="static/color1.jpg" style="  position: absolute;  left:0%;  top:0%;  width:100.0%;  height:100%; ">
+
+<div id="hover2_1" style="  position: absolute;  left:23.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<div  id="hover2_2" style="  position: absolute;  left:38.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<div  id="hover2_3" style="  position: absolute;  left:53.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<div  id="hover2_4" style="  position: absolute;  left:68.05%;  top:82.33%;  width:13.59%;  aspect-ratio:4.436; background:linear-gradient(135deg, #56c3f5d6, #af11cb); border-radius:10px; "></div> 
+
+<img  src="static/dashboard.png" style="  position: absolute;  left:23.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+<img src="static/analytics.png" style="  position: absolute;  left:38.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+<img src="static/predictions.png" style="  position: absolute;  left:53.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+<img  src="static/performance.png" style="  position: absolute;  left:68.83%;  top:83.70%;  width:1.5%;  aspect-ratio:1; border-radius:20px; ">
+
+
+
+
+<div  style="  position: absolute;  left:25.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">Dashboard</div> 
+
+<div  style="  position: absolute;  left:26%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">Main control panel</div> 
+<div  style="  position: absolute;  left:40.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">Analytics</div> 
+
+<div  style="  position: absolute;  left:41%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">Visual data insights</div> 
+<div  style="  position: absolute;  left:55.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">AI Predictions</div> 
+
+<div  style="  position: absolute;  left:56%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">7-day forecasts</div> 
+<div  style="  position: absolute;  left:70.91%;  top:83.29%;  width:8.599%;  font-size: 0.955vw;  aspect-ratio:8.415; color:white">Performance</div> 
+
+<div  style="  position: absolute;  left:71%;  top:86.03%;  width:8.600%;  font-size: 0.77vw;  aspect-ratio:11.01; color:whitesmoke">Key metrics</div> 
+
+
+<img src="static/analytics1.png" style="  position: absolute;  left:36.07%;  top:11.10%;  width:3.380%;  aspect-ratio:1; ">
+<!--font-weight:bold;-->
+<div  style="  position: absolute;  left:40.82%;  top:12.37%;  width:30.86%;  font-size: 2vw;  aspect-ratio:10.69; color:rgb(30, 215, 248)">Visual Analytics Dashboard</div> 
+
+
+<div  style="  position: absolute;  left:35.04%;  top:18.77%;  width:39.32%;  font-size: 1vw;  aspect-ratio:16.35; color:grey">Comprehensive visual analysis of your power generation system performance</div> 
+
+
+<div  style="  position: absolute;  left:47.05%;  top:22.88%;  width:5.940%;  height:1%; background:linear-gradient(135deg, #7ee5ff, #6a11cb); border-radius:20px; "></div> 
+<div id="hover1_0" class="hover1" style=" background-color: white; z-index:5; position: absolute;  left:10%;  top:28%; border-radius:20px; width:20.0%;  height:50%; border:0.5px solid rgb(50, 233, 187);">
+  <canvas id="myChart"></canvas>
+</div> 
+<div id="hover1_1" class="hover1" style=" background-color: white; z-index:5; position: absolute;  left:40%;  top:28%; border-radius:20px; width:20.0%;  height:50%;  border:0.5px solid rgb(50, 233, 187);">
+  <canvas id="myChart1"></canvas>
+</div> 
+<div id="hover1_2" class="hover1" style=" background-color: white; z-index:5; position: absolute;  left:70%;  top:28%; border-radius:20px; width:20.0%;  height:50%;  border:0.5px solid rgb(50, 233, 187);">
+  <canvas id="myChart2"></canvas>
+</div> 
+<script >
+const target10 = document.getElementById("hover1_0");
+const target11 = document.getElementById("hover1_1");
+const target12 = document.getElementById("hover1_2");
+
+const target21 = document.getElementById("hover2_1");
+const target22 = document.getElementById("hover2_2");
+const target23 = document.getElementById("hover2_3");
+const target24 = document.getElementById("hover2_4");
+document.addEventListener("mousemove", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+  const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const percentX = ((x / viewportWidth) * 100)
+      const percentY = ((y / viewportHeight) * 100)
+  f=0
+  if (percentX >= 10 && percentX <= 30 && percentY >= 28 && percentY <= 78) {
+    target10.style.boxShadow = "0 0 10px 10px rgba(0,123,255,0.6)"; f=1;
+  } else {
+    target10.style.boxShadow = "none";
+  }
+  if (percentX >= 40 && percentX <= 60 && percentY >= 28 && percentY <= 78) {
+    target11.style.boxShadow = "0 0 10px 10px rgba(0,123,255,0.6)"; f=1;
+    //document.body.style.cursor = "pointer";f=1;
+  } else {
+    target11.style.boxShadow = "none";
+  }
+  if (percentX >= 70 && percentX <= 90 && percentY >= 28 && percentY <= 78) {
+    target12.style.boxShadow = "0 0 10px 10px rgba(0,123,255,0.6)"; f=1;
+    //document.body.style.cursor = "pointer";f=1;
+  } else {
+    target12.style.boxShadow = "none";
+  }
+  if (percentX >= 23 && percentX <= 36.6 && percentY >= 82 && percentY <= 89) {
+    target21.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer"; f=1;
+  } else {
+    target21.style.boxShadow = "none";
+  }
+  if (percentX >= 38 && percentX <= 51.6 && percentY >= 82 && percentY <= 89) {
+    target22.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer"; f=1;
+  } else {
+    target22.style.boxShadow = "none";
+  }
+  if (percentX >= 53 && percentX <= 66.6 && percentY >= 82 && percentY <= 89) {
+    target23.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer";
+    f=1;
+  } else {
+    target23.style.boxShadow = "none";
+  }
+  if (percentX >= 68 && percentX <= 81.6 && percentY >= 82 && percentY <= 89) {
+    target24.style.boxShadow = "0 0 10px 5px rgba(0,123,255,0.6)";
+    document.body.style.cursor = "pointer"; f=1;
+  } else {
+    target24.style.boxShadow = "none";
+  }
+  if (f===0) document.body.style.cursor = "default";
+});
+const ctx = document.getElementById('myChart').getContext('2d');
+const ctx1 = document.getElementById('myChart1').getContext('2d');
+const ctx2 = document.getElementById('myChart2').getContext('2d');
+
+const l1 = JSON.parse(`{{ l|tojson }}`);  // Flask list into JS safely
+  const sublist = l1.slice(0, 7).map(item => item[4]);
+  console.log(sublist);
+  const sublist1 = l1.slice(0, 7).map(item => item[5]);
+  const sublist2 = l1.slice(0, 7).map(item => item[3]);
+const step = 10; const step1=1; const step2=0.2;
+//ctx.width  = canvas.clientWidth;
+//ctx.height = canvas.clientHeight;
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7'],
+        datasets: [{
+          label: 'Cost Saved',
+          data: sublist,
+          borderColor: 'blue',
+          fill: false
+        }]
+      },
+      options: {
+        plugins: { tooltip: { enabled: true } },
+        responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+      y: {
+        min: Math.floor((Math.min(...sublist) - step) / step) * step,   // one step below
+        max: Math.ceil((Math.max(...sublist) + step) / step) * step,    // one step above
+        ticks: {
+          stepSize: step
+        }
+      }
+    }
+    }});
+    document.addEventListener("click",e=>{
+  const x = e.clientX;
+  const y = e.clientY;
+  const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const percentX = ((x / viewportWidth) * 100)
+      const percentY = ((y / viewportHeight) * 100)
+  if (percentX >= 23 && percentX <= 36.6 && percentY >= 82 && percentY <= 89) {
+    console.log(1)
+  window.location.href = '/';
+  }
+  if (percentX >= 38 && percentX <= 51.6 && percentY >= 82 && percentY <= 89) {
+    const params = new URLSearchParams(window.location.search);
+window.location.href = "/analytics?" + params.toString();
+  //window.location.href = `/analytics?cap=${val}&runtime=${val1}&fuel=${val2}`;
+
+  }
+  if (percentX >= 53 && percentX <= 66.6 && percentY >= 82 && percentY <= 89) {
+const params = new URLSearchParams(window.location.search);
+window.location.href = "/predictions?" + params.toString();
+  } 
+  if (percentX >= 68 && percentX <= 81.6 && percentY >= 82 && percentY <= 89) {
+const params = new URLSearchParams(window.location.search);
+window.location.href = "/performance?" + params.toString();
+  } 
+});
+
+new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: ['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7'],
+        datasets: [{
+          label: 'CO2 Saved',
+          data: sublist1,
+          borderColor: 'blue',
+          fill: false
+        }]
+      },
+      options: {
+        plugins: { tooltip: { enabled: true } },
+        responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+      y: {
+        min: Math.floor((Math.min(...sublist1) - step1) / step1) * step1,   // one step below
+        max: Math.ceil((Math.max(...sublist1) + step1) / step1) * step1,    // one step above
+        ticks: {
+          stepSize: step1
+        }
+      }
+    }
+      }
+    });
+   
+new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7'],
+        datasets: [{
+          label: 'Fuel Saved',
+          data: sublist2,
+          borderColor: 'blue',
+          fill: false
+        }]
+      },
+      options: {
+        plugins: { tooltip: { enabled: true } },
+        responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+      y: {
+        min: Math.floor((Math.min(...sublist2) - step2) / step2) * step2,   // one step below
+        max: Math.ceil((Math.max(...sublist2) + step2) / step2) * step2,    // one step above
+        ticks: {
+          stepSize: step2
+        }
+      }
+    }
+      }
+    });
+  </script>
+</body>
+</html>

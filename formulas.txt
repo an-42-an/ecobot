@@ -1,0 +1,201 @@
+THERMAL POWER PLANT DATA GENERATION FORMULAS
+============================================
+
+This document contains all the physics-based formulas and calculations used in the 
+RealisticThermalPlantGenerator class for generating realistic thermal power plant data.
+
+IMPORTANT BUG FIX (2025-08-06):
+- Coal consumption calculation was previously off by orders of magnitude due to incorrect unit conversion
+- Fixed formula: coal_tonnes_per_day = current_generation_MW * coal_per_kwh_kg * run_hours
+- Previous incorrect formula: coal_tonnes_per_day = (current_generation_MW * run_hours * coal_per_kwh_kg) / 1000
+- The division by 1000 was incorrect and caused coal consumption to be reported as ~0.001x the actual value
+
+1. PLANT TYPE CONFIGURATIONS
+============================
+
+1.1 Subcritical Plants
+- Efficiency Range: 32% - 38%
+- Heat Rate Range: 2400 - 2600 kcal/kWh
+- Capacity Range: 200 - 500 MW
+- Temperature Sensitivity: 0.002 (efficiency loss per °C above 25°C)
+- Humidity Sensitivity: 0.001 (efficiency loss per % above 40%)
+- Pressure Sensitivity: 0.0005 (efficiency gain per hPa above 1013.25 hPa)
+
+1.2 Supercritical Plants
+- Efficiency Range: 38% - 42%
+- Heat Rate Range: 2200 - 2400 kcal/kWh
+- Capacity Range: 300 - 600 MW
+- Temperature Sensitivity: 0.0018
+- Humidity Sensitivity: 0.0008
+- Pressure Sensitivity: 0.0006
+
+1.3 Ultra-Supercritical Plants
+- Efficiency Range: 42% - 46%
+- Heat Rate Range: 2000 - 2200 kcal/kWh
+- Capacity Range: 400 - 800 MW
+- Temperature Sensitivity: 0.0015
+- Humidity Sensitivity: 0.0006
+- Pressure Sensitivity: 0.0007
+
+2. SEASONAL TEMPERATURE CALCULATION
+===================================
+
+Base Seasonal Temperatures:
+- Winter (Dec-Feb): 15°C
+- Spring (Mar-May): 22°C
+- Summer (Jun-Aug): 32°C
+- Autumn (Sep-Nov): 25°C
+
+Formula: T_seasonal = T_base + T_daily + T_random
+
+Where:
+- T_base = seasonal base temperature
+- T_daily = 8 × sin(2π × hour/24) [daily variation ±8°C]
+- T_random = random(-2, +2) [random noise]
+
+3. THERMAL EFFICIENCY CALCULATION
+==================================
+
+Base Efficiency Formula:
+η_final = η_base × f_temp × f_humidity × f_pressure × f_hours × f_degradation × f_random
+
+3.1 Temperature Factor (f_temp):
+f_temp = 1 - sensitivity_temp × (T_actual - 25°C)
+- 25°C is the reference temperature
+- sensitivity_temp varies by plant type
+
+3.2 Humidity Factor (f_humidity):
+f_humidity = 1 - sensitivity_humidity × (humidity_actual - 40%)
+- 40% is the reference humidity
+- Higher humidity reduces air density and combustion efficiency
+
+3.3 Pressure Factor (f_pressure):
+f_pressure = 1 + sensitivity_pressure × (pressure_actual - 1013.25 hPa)
+- 1013.25 hPa is standard atmospheric pressure
+- Higher pressure improves combustion efficiency
+
+3.4 Operating Hours Factor (f_hours):
+- Cold start (< 4 hours): f_hours = 0.95 (5% penalty)
+- Warm-up (4-8 hours): f_hours = 0.98 (2% penalty)
+- Stable operation (> 8 hours): f_hours = 1.0 + 0.0001 × (hours - 8)
+
+3.5 Equipment Degradation Factor (f_degradation):
+f_degradation = 1 - (days_since_start × 0.0001)
+- Assumes 0.01% efficiency loss per day of operation
+- Simulates realistic wear and tear over time
+
+3.6 Random Variation Factor (f_random):
+f_random = random(0.985, 1.015)
+- Adds ±1.5% realistic variation to final efficiency
+
+4. HEAT RATE CALCULATION
+=========================
+
+Heat Rate = 860 / η_efficiency (kcal/kWh)
+
+Where:
+- 860 kcal/kWh is the theoretical maximum (100% efficiency)
+- η_efficiency is the calculated thermal efficiency
+
+5. COAL CONSUMPTION CALCULATIONS
+=================================
+
+5.1 Coal per kWh:
+coal_per_kwh_kg = heat_rate_kcal_per_kwh / 7000
+- 7000 kcal/kg is the assumed calorific value of coal
+
+5.2 Total Coal Consumption (CORRECTED):
+coal_used_tonnes = generation_MW × run_hours × coal_per_kwh_kg
+- This gives coal consumption in tonnes per day
+- No division by 1000 needed since coal_per_kwh_kg is already in kg/kWh
+- Example: 200 MW × 24 hours × 0.55 kg/kWh = 2,640 tonnes/day
+
+6. PRESSURE CORRELATION WITH TEMPERATURE
+========================================
+
+pressure_hPa = 1013.25 + pressure_variation - (T_actual - 25°C) × 0.5
+
+Where:
+- 1013.25 hPa is standard atmospheric pressure
+- pressure_variation = random(-15, +15) hPa
+- Temperature correction factor: 0.5 hPa/°C
+
+7. GENERATION CALCULATIONS
+===========================
+
+7.1 Base Generation:
+base_generation_MW = max_capacity_MW × η_efficiency
+
+7.2 Current Generation with Load Variation:
+current_generation_MW = base_generation × load_variation
+- load_variation = random(0.8, 1.2) [±20% variation]
+
+7.3 Recommended Generation:
+recommended_generation_MW = max_capacity_MW × η_efficiency
+
+7.4 Adjustment Percentage:
+adjustment_pct = (recommended_generation - current_generation) / max_capacity × 100
+
+8. ECONOMIC AND ENVIRONMENTAL CALCULATIONS
+==========================================
+
+8.1 Coal Cost Savings:
+cost_saved = coal_saved_tonnes × coal_cost_per_ton
+- coal_cost_per_ton = random(5000, 7000) [realistic price range]
+
+8.2 CO2 Emissions Saved:
+co2_saved_tonnes = coal_saved_tonnes × 2.42
+- 2.42 tonnes CO2 per tonne of coal burned
+
+9. REALISTIC DATA CORRELATIONS
+===============================
+
+9.1 Load Factor Correlation:
+- 80% chance of full operation (20-24 hours)
+- 20% chance of partial operation (8-20 hours)
+
+9.2 Environmental Correlations:
+- Temperature affects pressure (inverse relationship)
+- Humidity affects combustion efficiency
+- Seasonal variations affect base temperatures
+- Daily cycles affect temperature variations
+
+10. PHYSICS CONSTANTS AND ASSUMPTIONS
+=====================================
+
+- Standard atmospheric pressure: 1013.25 hPa
+- Reference temperature: 25°C
+- Reference humidity: 40%
+- Coal calorific value: 7000 kcal/kg
+- CO2 emission factor: 2.42 tonnes CO2/tonne coal
+- Theoretical maximum heat rate: 860 kcal/kWh
+- Daily temperature variation amplitude: ±8°C
+- Random temperature noise: ±2°C
+- Efficiency random variation: ±1.5%
+- Load variation: ±20%
+
+11. VALIDATION RANGES
+======================
+
+All generated values are constrained to realistic ranges:
+- Efficiency: Within plant type specific ranges
+- Temperature: -10°C to 45°C (realistic for most locations)
+- Humidity: 20% to 80%
+- Pressure: 980 hPa to 1050 hPa
+- Operating hours: 8 to 24 hours
+- Generation: 0 to max_capacity_MW
+
+12. FORMULA SOURCES AND REFERENCES
+==================================
+
+These formulas are based on:
+- Thermodynamic principles for thermal efficiency
+- Real thermal power plant operating data
+- Environmental science correlations
+- Equipment degradation models
+- Economic analysis standards
+- Environmental impact assessment factors
+
+The formulas incorporate realistic variations and correlations that would be observed 
+in actual thermal power plant operations, making the generated data suitable for 
+training machine learning models and testing prediction systems.
